@@ -1,0 +1,6 @@
+# Install PyTorch with GPU support
+
+-f https://download.pytorch.org/whl/torch_stable.html
+
+torch==1.13.0+cu117
+torchvision==0.14.0+cu117
