@@ -10,6 +10,40 @@ def enemy_saving_throw(args):
     else:
         return 1
 
+
+class CharacterClass(Enum):
+    BARBARIAN = "Barbarian"
+    BARD = "Bard"
+    CLERIC = "Cleric"
+    DRUID = "Druid"
+    FIGHTER = "Fighter"
+    MONK = "Monk"
+    PALADIN = "Paladin"
+    RANGER = "Ranger"
+    ROGUE = "Rogue"
+    SORCERER = "Sorcerer"
+    WARLOCK = "Warlock"
+    WIZARD = "Wizard"
+
+class CharacterRace(Enum):
+    DWARF = "Dwarf"
+    ELF = "Elf"
+    HALFLING = "Halfling"
+    HUMAN = "Human"
+    DRAGONBORN = "Dragonborn"
+    GNOME = "Gnome"
+    HALF_ELF = "Half-Elf"
+    HALF_ORC = "Half-Orc"
+    TIEFLING = "Tiefling"
+
+class ActionEconomy(Enum):
+    ACTION = "Action"
+    BONUS_ACTION = "Bonus Action"
+    REACTION = "Reaction"
+    FREE_ACTION = "Free Action"
+    INTERACTION = "Interaction"
+    MOVE = "Move"
+
 class Dice(Enum):
     D4 = 4
     D6 = 6

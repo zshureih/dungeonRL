@@ -18,6 +18,41 @@ class Spell:
     def __call__(self) -> None:
         pass
 
+
+class ArcaneEruption(Spell):
+    """
+    You create a burst of arcane energy that erupts from a point of your choice within range. Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw. A target takes 6d6 force damage on a failed save, or half as much damage on a successful one. In addition, unsecured objects that are completely within the area of effect are automatically pushed 10 feet away from the center of the sphere by the spell's effect, and the spell emits a thunderous boom audible out to 300 feet.
+
+    When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.
+    """
+    def __init__(self, level=3):
+        super().__init__()
+        self.level = level
+        self.casting_time = CastingTime.ACTION
+        self.range = 150
+        self.area = '20-foot-radius sphere'
+        self.components = 'V,S'
+        self.concentration = False
+        self.duration = 'Instantaneous'
+        self.attack_save = AttackSave.DEX
+        self.damage_die = Dice.D6
+
+    def average_damage(self) -> float:
+        # Calculate average damage of 6d6
+        average_per_die = (1 + self.damage_die) / 2
+        num_dice = self.level
+        average_total_damage = average_per_die * num_dice
+        return average_total_damage
+
+    def __call__(self, state: dict) -> tuple:
+        # if the enemy makes the save, they take half damage
+        if enemy_saving_throw(state):
+            dice_roll = np.random.randint(1, self.damage_die + 1, size=np.max(3, self.level))
+            return np.sum(dice_roll) / 2, dice_roll
+        else:
+            dice_roll = np.random.randint(1, self.damage_die + 1, size=np.max(3, self.level))
+            return np.sum(dice_roll), dice_roll
+
 class EnergyEbb(Spell):
     """
     When you cast this spell, and as an action on each of your turns until the spell ends, you can target one creature you can see within range.
@@ -73,7 +108,7 @@ class HoldMonster(Spell):
         if enemy_saving_throw(state):
             return 0, []
         else:
-            return None, None  # Placeholder for spell effects
+            return NotImplemented, NotImplemented  # Placeholder for spell effects
 
 def _energy_ebb(state, exhaustion):
     # cause an enemy to make a save
