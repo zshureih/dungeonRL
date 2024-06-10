@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools", "wheel", "poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "gym_dnd"
+version = "0.1.0"
+description = "Your project description here"
+authors = ["Your Name <your.email@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+setuptools = "65.5.0"
+gym = "^0.19.0"
+numpy = "^1.20.1"
+matplotlib = "^3.3.4"
+opencv-python = "^4.5.1"
+pillow = "^9.0.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.2"

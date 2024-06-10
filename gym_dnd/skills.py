@@ -8,7 +8,7 @@ class Proficiency(Enum):
 
 class CharacterSkills:
     def __init__(self):
-        self.proficiencies = {
+        self.skills = {
             'acrobatics': Proficiency.NONE,
             'animal_handling': Proficiency.NONE,
             'arcana': Proficiency.NONE,
@@ -41,3 +41,6 @@ class CharacterSkills:
 
     def set_skill_proficiency(self, skill_name, proficiency):
         self.skills[skill_name] = proficiency
+    
+    def __iter__(self):
+        return iter(self.skills.keys())
